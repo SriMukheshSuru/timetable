@@ -1,241 +1,10 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Tables</title>
-</head>
-<body>
-    <div id="bus">
-    <h1>Bus Time Table</h1>
-    <iframe src="bus_timetable.pdf" width="100%" height="600px" style="border: none;"></iframe>
-    </div>
-    <div id = "class">
-    <h1>CLass Time Table</h1>
-    <iframe src="class_timetable.pdf" width="100%" height="600px" style="border: none;"></iframe>
-    </div>
-    <div id="mess">
-    <h1>Mess Time Table</h1>
-    <iframe src="mess_timetable.pdf" width="100%" height="600px" style="border: none;"></iframe>
-    </div>
-</body>
-</html> -->
-
-
-
-
-<!-- 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Time Tables</title>
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        .container {
-            display: none;
-            width: 100vw;
-            height: 100vh;
-        }
-
-        .container.active {
-            display: block;
-        }
-
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .navigation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-            z-index: 10;
-        }
-
-        .navigation button {
-            margin: 0 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #555;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .navigation button:hover {
-            background-color: #777;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="navigation">
-        <button onclick="showPDF('bus')">Bus Time Table</button>
-        <button onclick="showPDF('class')">Class Time Table</button>
-        <button onclick="showPDF('mess')">Mess Time Table</button>
-    </div>
-
-    <div id="bus" class="container active">
-        <iframe src="bus_timetable.pdf"></iframe>
-    </div>
-    <div id="class" class="container">
-        <iframe src="class_timetable.pdf"></iframe>
-    </div>
-    <div id="mess" class="container">
-        <iframe src="mess_timetable.pdf"></iframe>
-    </div>
-
-    <script>
-        function showPDF(id) {
-            // Hide all containers
-            const containers = document.querySelectorAll('.container');
-            containers.forEach(container => container.classList.remove('active'));
-
-            // Show the selected container
-            document.getElementById(id).classList.add('active');
-        }
-    </script>
-</body>
-
-</html> -->
-
-
-
-<!-- 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Viewer with PDF.js</title>
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-        }
-
-        #pdf-container {
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background: #f5f5f5;
-        }
-
-        canvas {
-            display: block;
-            margin: 10px auto;
-            border: 1px solid #ccc;
-        }
-
-        .navigation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            padding: 10px;
-            text-align: center;
-            z-index: 10;
-        }
-
-        .navigation button {
-            margin: 0 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #555;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .navigation button:hover {
-            background-color: #777;
-        }
-    </style>
-</head>
-
-<body>
-    
-    <div class="navigation">
-        <button onclick="loadPDF('bus_timetable.pdf')">Bus Time Table</button>
-        <button onclick="loadPDF('class_timetable.pdf')">Class Time Table</button>
-        <button onclick="loadPDF('mess_timetable.pdf')">Mess Time Table</button>
-    </div>
-
-    <div id="pdf-container"></div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
-
-    <script>
-        const pdfContainer = document.getElementById('pdf-container');
-
-        // Function to load and render the PDF
-        function loadPDF(pdfURL) {
-            pdfContainer.innerHTML = ''; // Clear previous content
-
-            // Load the PDF
-            pdfjsLib.getDocument(pdfURL).promise.then(pdf => {
-                // Loop through each page and render
-                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-                    pdf.getPage(pageNum).then(page => {
-                        const viewport = page.getViewport({ scale: 1.5 });
-                        const canvas = document.createElement('canvas');
-                        const context = canvas.getContext('2d');
-
-                        canvas.width = viewport.width;
-                        canvas.height = viewport.height;
-                        pdfContainer.appendChild(canvas);
-
-                        // Render the page on the canvas
-                        page.render({
-                            canvasContext: context,
-                            viewport: viewport
-                        });
-                    });
-                }
-            }).catch(error => {
-                console.error('Error loading PDF:', error);
-                pdfContainer.innerHTML = `<p style="color: red;">Unable to load the PDF. Please try again later.</p>`;
-            });
-        }
-
-        // Load the first PDF by default
-        loadPDF('bus_timetable.pdf');
-    </script>
-</body>
-
-</html> -->
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDF Viewer with PDF.js</title>
+    <title>High-Quality PDF Viewer with PDF.js</title>
     <style>
         body,
         html {
@@ -323,12 +92,18 @@
                             containerHeight / viewport.height
                         );
 
-                        const scaledViewport = page.getViewport({ scale: scale });
+                        // Adjust for device pixel ratio
+                        const devicePixelRatio = window.devicePixelRatio || 1;
+                        const scaledViewport = page.getViewport({ scale: scale * devicePixelRatio });
+
                         const canvas = document.createElement('canvas');
                         const context = canvas.getContext('2d');
 
                         canvas.width = scaledViewport.width;
                         canvas.height = scaledViewport.height;
+                        canvas.style.width = `${scaledViewport.width / devicePixelRatio}px`;
+                        canvas.style.height = `${scaledViewport.height / devicePixelRatio}px`;
+
                         pdfContainer.appendChild(canvas);
 
                         // Render the page on the canvas
